@@ -7,19 +7,36 @@
 //
 
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let location = CLLocationCoordinate2D(latitude: 38.8976763, longitude: -77.0365298)
+        
+        let span = MKCoordinateSpanMake(0.5, 0.5)
+        let region = MKCoordinateRegionMake(location, span)
+        
+        mapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = location
+        annotation.title = "White House Brewery"
+        annotation.subtitle = "The grand palace with the finest hops - Washington D.C."
+        
+        mapView.addAnnotation(annotation)
+        
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    @IBOutlet weak var mapView: MKMapView!
 
 }
 
